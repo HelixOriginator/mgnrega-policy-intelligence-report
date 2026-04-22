@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGNREGA | Policy Intelligence Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-2: #111114;
+    --bg-3: #161619;
+    --bg-4: #1c1c21;
+    --border: #2a2a30;
+    --border-bright: #3a3a44;
+    --text: #e8e8ee;
+    --text-muted: #888899;
+    --text-dim: #555566;
+    --accent: #e8a038;
+    --accent-dim: rgba(232,160,56,0.12);
+    --accent-border: rgba(232,160,56,0.3);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.1);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.1);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96,165,250,0.1);
+    --purple: #c084fc;
+    --purple-dim: rgba(192,132,252,0.1);
+    --amber: #fbbf24;
+    --amber-dim: rgba(251,191,36,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER BAND ─────────────────────────────────────────────────────── */
+  .header-meta {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    overflow: hidden;
+  }
+  .ticker-wrap {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    animation: ticker 40s linear infinite;
+  }
+  .ticker-wrap span { color: var(--text-muted); }
+  .ticker-wrap strong { color: var(--accent); }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── HERO ────────────────────────────────────────────────────────────── */
+  .hero {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'MGNREGA';
+    position: absolute;
+    top: -30px; right: -20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 200px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.018);
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .hero-subtitle {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  .hero-desc {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 700px;
+    line-height: 1.65;
+    border-left: 2px solid var(--border-bright);
+    padding-left: 18px;
+  }
+
+  /* ─── STATS BAR ────────────────────────────────────────────────────────── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-3);
+  }
+  @media (max-width: 700px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+  .stat-cell {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell:hover { background: var(--bg-4); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .stat-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ─── KEY DATA TICKER ─────────────────────────────────────────────────── */
+  .data-ticker {
+    background: var(--bg-4);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    overflow: hidden;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .data-ticker-inner {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: ticker 55s linear infinite;
+  }
+  .data-ticker-inner .dot { color: var(--accent); margin-right: 6px; }
+  .data-ticker-inner strong { color: var(--text); }
+
+  /* ─── MAIN LAYOUT ─────────────────────────────────────────────────────── */
+  .main-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+  }
+  @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+
+  /* ─── CONTENT SECTIONS ─────────────────────────────────────────────────── */
+  .content { border-right: 1px solid var(--border); padding-right: 48px; padding-top: 64px; padding-bottom: 80px; }
+  @media (max-width: 900px) { .content { border-right: none; padding-right: 0; } }
+
+  .section {
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+  }
+  .section:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 80px;
+  }
+
+  h2.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  h3.sub-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 28px 0 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  p { color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ─── POLICY SNAPSHOT TABLE ───────────────────────────────────────────── */
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  @media (max-width: 600px) { .snapshot-grid { grid-template-columns: 1fr; } }
+  .snap-cell {
+    background: var(--bg-3);
+    padding: 16px 20px;
+  }
+  .snap-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .snap-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .snap-val.active { color: var(--green); }
+
+  /* ─── GUARANTEE BOX ───────────────────────────────────────────────────── */
+  .guarantee-box {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    padding: 28px;
+    margin: 24px 0;
+  }
+  .guarantee-box .g-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .guarantee-box .g-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .guarantee-box .g-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .guarantee-box .g-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .guarantee-box .g-item::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ─── FLOW DIAGRAM ────────────────────────────────────────────────────── */
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 16px 0;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    position: relative;
+  }
+  .flow-step:not(:last-child) .step-line {
+    position: absolute;
+    left: 23px;
+    top: 48px;
+    width: 2px;
+    height: calc(100% - 10px);
+    background: var(--border);
+  }
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: var(--bg-4);
+    border: 1px solid var(--border-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .step-content {
+    padding: 8px 0 32px;
+  }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── OUTPUT / OUTCOME GRID ───────────────────────────────────────────── */
+  .dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .dual-grid { grid-template-columns: 1fr; } }
+  .dual-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .dual-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dual-card.output .dual-card-label { color: var(--blue); border-color: rgba(96,165,250,0.2); }
+  .dual-card.outcome .dual-card-label { color: var(--green); border-color: rgba(74,222,128,0.2); }
+  .dual-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .dual-card ul li {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .dual-card.output ul li::before { content: '▸'; color: var(--blue); flex-shrink: 0; }
+  .dual-card.outcome ul li::before { content: '▸'; color: var(--green); flex-shrink: 0; }
+
+  /* ─── GROUND REALITY ──────────────────────────────────────────────────── */
+  .reality-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .reality-grid { grid-template-columns: 1fr; } }
+  .reality-card {
+    padding: 20px;
+    border: 1px solid;
+  }
+  .reality-card.success {
+    background: var(--green-dim);
+    border-color: rgba(74,222,128,0.25);
+  }
+  .reality-card.failure {
+    background: var(--red-dim);
+    border-color: rgba(248,113,113,0.25);
+  }
+  .reality-card-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .reality-card.success .reality-card-head { color: var(--green); }
+  .reality-card.failure .reality-card-head { color: var(--red); }
+  .reality-card ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .reality-card ul li {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.55;
+  }
+  .reality-card.success ul li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
+  .reality-card.failure ul li::before { content: '✗'; color: var(--red); flex-shrink: 0; }
+
+  /* ─── SCORECARD ────────────────────────────────────────────────────────── */
+  .scorecard { margin: 16px 0; }
+  .score-total-box {
+    background: var(--bg-4);
+    border: 1px solid var(--border-bright);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+  .score-big {
+    font-family: 'Syne', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .score-grade {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .score-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .score-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-item:last-child { border-bottom: none; }
+  .score-item-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .score-item-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .score-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    min-width: 120px;
+  }
+  .score-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .score-max {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .score-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    margin-top: 4px;
+  }
+  .score-bar-fill {
+    height: 100%;
+    transition: width 1s ease;
+  }
+  .score-hi { color: var(--green); }
+  .score-med { color: var(--amber); }
+  .score-lo { color: var(--red); }
+  .score-hi-bar { background: var(--green); }
+  .score-med-bar { background: var(--amber); }
+  .score-lo-bar { background: var(--red); }
+
+  /* ─── OVERLAP TABLE ─────────────────────────────────────────────────────── */
+  .overlap-table-wrap { overflow-x: auto; margin: 16px 0; }
+  .overlap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+  .overlap-table th {
+    background: var(--bg-4);
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-bright);
+    white-space: nowrap;
+  }
+  .overlap-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .overlap-table tr:last-child td { border-bottom: none; }
+  .overlap-table tr:hover td { background: var(--bg-3); }
+  .overlap-table td:first-child { color: var(--text); font-weight: 500; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .badge-high { background: rgba(248,113,113,0.12); color: var(--red); }
+  .badge-med { background: rgba(251,191,36,0.12); color: var(--amber); }
+  .badge-low { background: rgba(96,165,250,0.12); color: var(--blue); }
+
+  /* ─── INSIGHT CARDS ─────────────────────────────────────────────────────── */
+  .insight-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .insight-card {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-left: 3px solid;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .insight-card.warn { border-left-color: var(--amber); }
+  .insight-card.info { border-left-color: var(--blue); }
+  .insight-card.critical { border-left-color: var(--red); }
+  .insight-card.positive { border-left-color: var(--green); }
+  .insight-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    margin-top: 2px;
+  }
+  .insight-card.warn .insight-icon { color: var(--amber); }
+  .insight-card.info .insight-icon { color: var(--blue); }
+  .insight-card.critical .insight-icon { color: var(--red); }
+  .insight-card.positive .insight-icon { color: var(--green); }
+  .insight-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .insight-card-body {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── BLOCKQUOTE ─────────────────────────────────────────────────────────── */
+  blockquote {
+    border-left: 2px solid var(--accent);
+    padding: 16px 20px;
+    margin: 24px 0;
+    background: var(--accent-dim);
+  }
+  blockquote p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  blockquote cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── FINANCIAL BARS ─────────────────────────────────────────────────────── */
+  .fin-bar-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+  .fin-bar-item { }
+  .fin-bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .fin-bar-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .fin-bar-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .fin-bar-track {
+    height: 6px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .fin-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), rgba(232,160,56,0.5));
+    transition: width 1s ease;
+  }
+
+  /* ─── DATA BOXES ─────────────────────────────────────────────────────────── */
+  .data-boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .data-boxes { grid-template-columns: 1fr 1fr; } }
+  .data-box {
+    background: var(--bg-4);
+    border: 1px solid var(--border);
+    padding: 16px;
+    text-align: center;
+  }
+  .data-box-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .data-box-num span { color: var(--accent); }
+  .data-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SYSTEM INSIGHT ─────────────────────────────────────────────────────── */
+  .sys-question {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin: 14px 0;
+  }
+  .sys-q {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .sys-q-mark {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .sys-a {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* ─── DATA RELIABILITY ───────────────────────────────────────────────────── */
+  .reliability-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    margin: 16px 0;
+  }
+  .reliability-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+  .reliability-table tr:last-child td { border-bottom: none; }
+  .reliability-table td:first-child {
+    color: var(--text-dim);
+    width: 140px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SIDEBAR ────────────────────────────────────────────────────────────── */
+  .sidebar {
+    padding: 64px 0 64px 40px;
+    position: sticky;
+    top: 0;
+    height: fit-content;
+  }
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+  }
+  .sidebar-section { margin-bottom: 32px; }
+  .sidebar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .sidebar-nav a {
+    display: block;
+    padding: 6px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-nav a:hover {
+    color: var(--text);
+    border-left-color: var(--accent);
+    background: var(--bg-3);
+  }
+  .scheme-params {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .scheme-params ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .scheme-params ul li {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .scheme-params ul li span:first-child {
+    font-size: 9px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .scheme-params ul li span:last-child { color: var(--text); }
+
+  /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+  footer {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+    margin-top: 0;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 700px) { .footer-inner { grid-template-columns: 1fr; } }
+  .footer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .footer-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .footer-links li {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .footer-links li::before { content: '§'; color: var(--accent); margin-right: 6px; }
+  .footer-bottom {
+    max-width: 1080px;
+    margin: 32px auto 0;
+    padding: 20px 32px 0;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ─── UTILITY ────────────────────────────────────────────────────────────── */
+  .tag-pill {
+    display: inline-block;
+    background: var(--bg-4);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin: 3px 3px 3px 0;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+  .highlight-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 10px 14px;
+    border-left: 3px solid var(--accent);
+    margin: 16px 0;
+  }
+  .sep { color: var(--text-dim); margin: 0 8px; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* ─── ANIMATIONS ─────────────────────────────────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in:nth-child(1) { animation-delay: 0.05s; }
+  .fade-in:nth-child(2) { animation-delay: 0.12s; }
+  .fade-in:nth-child(3) { animation-delay: 0.19s; }
+  .fade-in:nth-child(4) { animation-delay: 0.26s; }
+
+  /* ─── COUNTER ANIMATION ──────────────────────────────────────────────────── */
+  .count-up {
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER META BAND -->
+<div class="header-meta">
+  <div class="container">
+    <div class="ticker-wrap" style="display:flex;gap:48px;white-space:nowrap;">
+      <span>VOL. VIII</span><span class="sep">·</span><span>CENTRAL SCHEME ANALYSIS</span><span class="sep">·</span><strong>POLICY INTELLIGENCE UNIT</strong><span class="sep">·</span><span>Updated: April 22, 2026</span><span class="sep">·</span><span>MINISTRY OF RURAL DEVELOPMENT</span><span class="sep">·</span><span>■ Rights-Based Legislation · Employment Guarantee · India</span>
+      <!-- Duplicate for seamless loop -->
+      <span>VOL. VIII</span><span class="sep">·</span><span>CENTRAL SCHEME ANALYSIS</span><span class="sep">·</span><strong>POLICY INTELLIGENCE UNIT</strong><span class="sep">·</span><span>Updated: April 22, 2026</span><span class="sep">·</span><span>MINISTRY OF RURAL DEVELOPMENT</span><span class="sep">·</span><span>■ Rights-Based Legislation · Employment Guarantee · India</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Policy Intelligence Report</div>
+    <h1 class="hero-title fade-in">MGNREGA</h1>
+    <p class="hero-subtitle fade-in">Mahatma Gandhi National Rural Employment Guarantee Act · Deep Policy Intelligence Report</p>
+    <p class="hero-desc fade-in">A rigorous analytical dissection of India's largest employment guarantee legislation — examining its legal architecture, fiscal mechanics, implementation logic, scoring intelligence, scheme overlap, and system-level structural analysis across two decades of operation.</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-cell fade-in">
+    <div class="stat-num">15.99<span style="font-size:18px;color:var(--text-muted)"> Cr</span></div>
+    <div class="stat-label">Households Registered</div>
+    <div class="stat-note">FY 2024–25 · Job Card Holders</div>
+  </div>
+  <div class="stat-cell fade-in">
+    <div class="stat-num">290+<span style="font-size:18px;color:var(--text-muted)"> Cr</span></div>
+    <div class="stat-label">Person-Days Generated</div>
+    <div class="stat-note">Cumulative · MIS Data</div>
+  </div>
+  <div class="stat-cell fade-in">
+    <div class="stat-num">₹86K<span style="font-size:18px;color:var(--text-muted)"> Cr</span></div>
+    <div class="stat-label">Annual Budget</div>
+    <div class="stat-note">~1.9% of Union Budget</div>
+  </div>
+  <div class="stat-cell fade-in">
+    <div class="stat-num">~58<span style="font-size:18px;color:var(--text-muted)">%</span></div>
+    <div class="stat-label">Women Participation</div>
+    <div class="stat-note">Exceeds 33% statutory mandate</div>
+  </div>
+</div>
+
+<!-- DATA TICKER -->
+<div class="data-ticker">
+  <div class="data-ticker-inner">
+    <span><span class="dot">■</span><strong>100 Days</strong> guaranteed wage employment per rural household per year</span>
+    <span><span class="dot">■</span><strong>15-Day</strong> work provision mandate or unemployment allowance kicks in</span>
+    <span><span class="dot">■</span><strong>~30%</strong> rural households covered annually</span>
+    <span><span class="dot">■</span>Demand-driven — not supply-constrained</span>
+    <span><span class="dot">■</span><strong>100%</strong> unskilled wages funded by Centre</span>
+    <span><span class="dot">■</span>Aadhaar-Based Payment System (ABPS) deployed</span>
+    <span><span class="dot">■</span>Wage delays remain a critical systemic failure</span>
+    <span><span class="dot">■</span><strong>11+ Cr</strong> households worked (2022 data)</span>
+    <!-- Duplicate for seamless loop -->
+    <span><span class="dot">■</span><strong>100 Days</strong> guaranteed wage employment per rural household per year</span>
+    <span><span class="dot">■</span><strong>15-Day</strong> work provision mandate or unemployment allowance kicks in</span>
+    <span><span class="dot">■</span><strong>~30%</strong> rural households covered annually</span>
+    <span><span class="dot">■</span>Demand-driven — not supply-constrained</span>
+    <span><span class="dot">■</span><strong>100%</strong> unskilled wages funded by Centre</span>
+    <span><span class="dot">■</span>Aadhaar-Based Payment System (ABPS) deployed</span>
+    <span><span class="dot">■</span>Wage delays remain a critical systemic failure</span>
+    <span><span class="dot">■</span><strong>11+ Cr</strong> households worked (2022 data)</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT + SIDEBAR -->
+<div class="main-grid">
+  <div class="content">
+
+    <!-- §01 POLICY SNAPSHOT -->
+    <div class="section" id="s01">
+      <div class="section-tag">§ 01</div>
+      <h2 class="section-title">Policy Snapshot</h2>
+      <div class="snapshot-grid">
+        <div class="snap-cell">
+          <div class="snap-key">Scheme Name</div>
+          <div class="snap-val">MGNREGA / MGNREGS</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Launch Year</div>
+          <div class="snap-val">2005 (Feb 2, 2006 — Full rollout)</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Ministry</div>
+          <div class="snap-val">Ministry of Rural Development</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Scheme Type</div>
+          <div class="snap-val">Centrally Sponsored · Rights-Based Legislation</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Legal Foundation</div>
+          <div class="snap-val">Act of Parliament (Not a Scheme — a Right)</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Status</div>
+          <div class="snap-val active">● Active</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Coverage</div>
+          <div class="snap-val">All Rural Districts · Nationwide</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Target Beneficiary</div>
+          <div class="snap-val">Any Rural Household (Self-selection)</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        <span class="tag-pill">Rights-Based</span>
+        <span class="tag-pill">Demand-Driven</span>
+        <span class="tag-pill">DBT-Enabled</span>
+        <span class="tag-pill">ABPS-Linked</span>
+        <span class="tag-pill">Gram Panchayat Executed</span>
+        <span class="tag-pill">Universal Rural Access</span>
+      </div>
+    </div>
+
+    <!-- §02 CORE GUARANTEE -->
+    <div class="section" id="s02">
+      <div class="section-tag">§ 02</div>
+      <h2 class="section-title">Core Legal Guarantee</h2>
+      <p>MGNREGA is not a welfare scheme — it is a <strong>statutory right</strong>. Any adult member of a rural household willing to do unskilled manual work is legally entitled to employment within 15 days of application. This demand-driven architecture is constitutionally distinct from all other central welfare programmes.</p>
+
+      <div class="guarantee-box">
+        <div class="g-num">100</div>
+        <div class="g-label">Days of Guaranteed Wage Employment · Per Rural Household · Per Year</div>
+        <div class="g-items">
+          <div class="g-item">Work must be provided within <strong>15 days</strong> of application — else unemployment allowance is legally mandatory</div>
+          <div class="g-item">Demand-driven: government cannot ration work downward; households determine uptake</div>
+          <div class="g-item">Unskilled manual labor only — self-selection mechanism eliminates income ceiling need</div>
+          <div class="g-item">At least <strong>one-third</strong> of workers on any site must be women (statutory mandate)</div>
+          <div class="g-item">Work must be provided within <strong>5 km</strong> of the worker's residence wherever possible</div>
+          <div class="g-item">Wages paid directly to bank / post office accounts — no cash intermediaries</div>
+        </div>
+      </div>
+
+      <div class="highlight-line">
+        CRITICAL DISTINCTION: Unlike PM-KISAN (unconditional transfer) or PMFBY (insurance), MGNREGA is a <strong>labor-contingent right</strong>. Payment is earned, not given. This self-targeting mechanism ensures fiscal self-correction — demand naturally falls when private labor markets improve.
+      </div>
+    </div>
+
+    <!-- §03 POLICY INTENT -->
+    <div class="section" id="s03">
+      <div class="section-tag">§ 03</div>
+      <h2 class="section-title">Policy Intent — Why It Exists</h2>
+
+      <div class="data-boxes">
+        <div class="data-box">
+          <div class="data-box-num"><span>①</span></div>
+          <div class="data-box-label">Reduce Rural Poverty</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>②</span></div>
+          <div class="data-box-label">Income Security</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>③</span></div>
+          <div class="data-box-label">Prevent Distress Migration</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>④</span></div>
+          <div class="data-box-label">Create Durable Rural Assets</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>⑤</span></div>
+          <div class="data-box-label">Gender Empowerment</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>⑥</span></div>
+          <div class="data-box-label">Strengthen Panchayati Raj</div>
+        </div>
+      </div>
+
+      <p style="margin-top:20px;">The legislative design reflects a dual mandate: <strong>immediate income protection</strong> during agricultural lean seasons and <strong>long-run asset creation</strong> — roads, irrigation, watershed management, afforestation. This dual-purpose architecture makes MGNREGA structurally unique among global employment guarantee programmes. The safety-net function activates during market shocks (COVID-19 being the clearest case study); the asset creation function operates continuously.</p>
+
+      <blockquote>
+        <p>"MGNREGA's design premise is that the rural poor should not have to migrate to find work — the state must bring productive work to them. The wage floor it sets also disciplines private agricultural wages upward in surrounding labor markets."</p>
+        <cite>— Analytical Inference from World Bank, Ministry of Rural Development Programme Data</cite>
+      </blockquote>
+    </div>
+
+    <!-- §04 TARGET STRUCTURE -->
+    <div class="section" id="s04">
+      <div class="section-tag">§ 04</div>
+      <h2 class="section-title">Target Structure</h2>
+
+      <p>MGNREGA's targeting logic is uniquely self-correcting. There is <strong>no income ceiling</strong> — any adult rural household member may apply. The barrier is the nature of work itself: unskilled manual labor. Wealthier rural households self-select out, making inclusion near-automatic for the labor-dependent poor.</p>
+
+      <div class="insight-grid">
+        <div class="insight-card positive">
+          <div class="insight-icon">●</div>
+          <div>
+            <div class="insight-card-title">Self-Targeting via Work Nature</div>
+            <div class="insight-card-body">Manual unskilled labor acts as a natural income ceiling substitute. Unlike PM-KISAN (land-ownership gate) or PMFBY, MGNREGA has virtually zero structural exclusion by design. Anyone willing to work can access it.</div>
+          </div>
+        </div>
+        <div class="insight-card info">
+          <div class="insight-icon">◆</div>
+          <div>
+            <div class="insight-card-title">Geographic Reach</div>
+            <div class="insight-card-body">All rural districts across India. Initially phased (200 districts in 2006 → expanded to 330 in 2007 → nationwide by 2008). No district is excluded. Urban excluded by definition — rural residency required.</div>
+          </div>
+        </div>
+        <div class="insight-card warn">
+          <div class="insight-icon">▲</div>
+          <div>
+            <div class="insight-card-title">Registration Barrier</div>
+            <div class="insight-card-body">Despite open eligibility, obtaining a Job Card requires Gram Panchayat engagement. In poorly governed regions, this creates informal exclusion — particularly for migrant laborers without stable panchayat registration.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §05 FINANCIAL ARCHITECTURE -->
+    <div class="section" id="s05">
+      <div class="section-tag">§ 05</div>
+      <h2 class="section-title">Financial Architecture</h2>
+
+      <div class="data-boxes" style="grid-template-columns: repeat(3,1fr); margin-bottom:24px;">
+        <div class="data-box">
+          <div class="data-box-num">₹<span>86K</span></div>
+          <div class="data-box-label">Cr Annual Budget</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>~70</span>%</div>
+          <div class="data-box-label">Wage Share of Spend</div>
+        </div>
+        <div class="data-box">
+          <div class="data-box-num"><span>100</span>%</div>
+          <div class="data-box-label">Unskilled Wage — Centre</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Centre-State Cost Sharing</h3>
+      <div class="fin-bar-list">
+        <div class="fin-bar-item">
+          <div class="fin-bar-header">
+            <span class="fin-bar-name">Unskilled Wages — Central Government</span>
+            <span class="fin-bar-val">100%</span>
+          </div>
+          <div class="fin-bar-track"><div class="fin-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="fin-bar-item">
+          <div class="fin-bar-header">
+            <span class="fin-bar-name">Material Cost — Central Government</span>
+            <span class="fin-bar-val">~75%</span>
+          </div>
+          <div class="fin-bar-track"><div class="fin-bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="fin-bar-item">
+          <div class="fin-bar-header">
+            <span class="fin-bar-name">Material Cost — State Government</span>
+            <span class="fin-bar-val">~25%</span>
+          </div>
+          <div class="fin-bar-track"><div class="fin-bar-fill" style="width:25%;background:rgba(96,165,250,0.6)"></div></div>
+        </div>
+        <div class="fin-bar-item">
+          <div class="fin-bar-header">
+            <span class="fin-bar-name">Administrative Expenses — Centre</span>
+            <span class="fin-bar-val">~6% of total</span>
+          </div>
+          <div class="fin-bar-track"><div class="fin-bar-fill" style="width:6%;background:rgba(192,132,252,0.6)"></div></div>
+        </div>
+      </div>
+
+      <p style="margin-top:16px;">The 60:40 labour-to-material ratio cap (revised from an earlier 60:40 to allow more flexibility) is central to the scheme's asset creation mandate. States cannot exceed 40% material expenditure, which controls capital-intensive but low-employment work from displacing the core wage-employment objective.</p>
+
+      <div class="highlight-line">
+        DEMAND-DRIVEN FISCAL RISK: Because MGNREGA is a legal entitlement, the government cannot reduce allocations without creating unfunded liabilities. Budget under-allocation leads to pending wage payments — a structural tension between fiscal consolidation and legal obligation.
+      </div>
+    </div>
+
+    <!-- §06 SCALE & DATA -->
+    <div class="section" id="s06">
+      <div class="section-tag">§ 06</div>
+      <h2 class="section-title">Scale & Data</h2>
+
+      <div class="snapshot-grid" style="margin-bottom:16px;">
+        <div class="snap-cell">
+          <div class="snap-key">Registered Households (FY 2024-25)</div>
+          <div class="snap-val">~15.99 Crore</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Households That Worked (2022)</div>
+          <div class="snap-val">~11+ Crore</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Person-Days Generated (Cumulative)</div>
+          <div class="snap-val">290+ Crore</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Rural Household Coverage</div>
+          <div class="snap-val">~30% Annually</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">Women Participation Rate</div>
+          <div class="snap-val">~58%+ (FY 2024-25)</div>
+        </div>
+        <div class="snap-cell">
+          <div class="snap-key">States/UTs Covered</div>
+          <div class="snap-val">All 28 States + UTs</div>
+        </div>
+      </div>
+
+      <p>At peak utilization (FY 2020-21, COVID crisis), MGNREGA generated over 389 crore person-days — its highest recorded annual output. This makes it empirically the <strong>world's largest employment guarantee programme by active beneficiary count</strong>, surpassing comparable programmes in Brazil (PRONAF), the USA (JTPA), and the EU combined in terms of direct labour absorption.</p>
+
+      <div class="insight-card warn" style="margin-top:16px;">
+        <div class="insight-icon">▲</div>
+        <div>
+          <div class="insight-card-title">Person-Day vs. Household Coverage Gap</div>
+          <div class="insight-card-body">15.99 Cr households are registered (Job Cards issued) but only ~11 Cr actually worked. The ~5 Cr gap represents dormant registrations — households that demanded work but didn't receive it (supply failure), those who didn't demand (private market preference), or administrative non-activation. This gap is a critical unmeasured policy variable.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §07 IMPLEMENTATION LOGIC -->
+    <div class="section" id="s07">
+      <div class="section-tag">§ 07</div>
+      <h2 class="section-title">Implementation Logic</h2>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-line"></div>
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Household Registration → Job Card Issuance</div>
+            <div class="step-desc">Rural household applies to Gram Panchayat. Job Card (with photo) issued within 15 days. Household enters MGNREGA MIS. Job Card is the legal identity document for employment access — non-transferable, household-level.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-line"></div>
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Work Demand Submission</div>
+            <div class="step-desc">Household submits written/oral work demand to Gram Panchayat or Block Programme Officer. Dated receipt is mandatory. Demand receipt triggers the legal 15-day provision clock — this is the moment of legal obligation creation.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-line"></div>
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Gram Panchayat Work Allocation</div>
+            <div class="step-desc">Gram Panchayat prepares annual Labour Budget, proposes shelf of projects (water conservation, roads, irrigation, afforestation). Works must be within 5km of household. At least 50% of works by value to be executed by Gram Panchayats directly.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-line"></div>
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Work Execution & Muster Roll</div>
+            <div class="step-desc">Workers report at worksite. Attendance recorded in Muster Roll (now digitized on NREGASoft MIS). Work measured by Work Measurement Officers. Minimum measurement every 14 days. No contractor can be engaged for works.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-line"></div>
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <div class="step-title">Wage Payment via ABPS / Bank Transfer</div>
+            <div class="step-desc">Wages processed through National Electronic Fund Management System (NeFMS). Transferred directly to worker's Aadhaar-linked bank or post office account within 15 days of work measurement. ABPS (Aadhaar-Based Payment System) used for biometric authentication of payment.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">System Architecture</h3>
+      <div class="insight-grid">
+        <div class="insight-card info">
+          <div class="insight-icon">◆</div>
+          <div>
+            <div class="insight-card-title">NREGASoft MIS — Central Digital Backbone</div>
+            <div class="insight-card-body">Real-time national management information system tracking every Job Card, work demand, muster roll, payment, and asset created. Public-facing dashboards allow citizen-level monitoring. One of the most transparent social programme MIS systems globally.</div>
+          </div>
+        </div>
+        <div class="insight-card info">
+          <div class="insight-icon">◆</div>
+          <div>
+            <div class="insight-card-title">Gram Panchayat — Primary Execution Engine</div>
+            <div class="insight-card-body">Panchayats are legally mandated to execute at least 50% of works. The Gram Sabha (village assembly) approves work proposals. This decentralization is both MGNREGA's democratic strength and its implementation vulnerability — panchayat capacity varies enormously across states.</div>
+          </div>
+        </div>
+        <div class="insight-card warn">
+          <div class="insight-icon">▲</div>
+          <div>
+            <div class="insight-card-title">ABPS — Aadhaar Payment Integration</div>
+            <div class="insight-card-body">Aadhaar-Based Payment System ensures wages reach verified beneficiaries, eliminating wage theft by intermediaries. However, biometric authentication failures in field conditions (wet/worn fingerprints) and connectivity issues in remote areas create exclusion errors — genuine workers denied wages on technical grounds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §08 OUTPUT vs OUTCOME -->
+    <div class="section" id="s08">
+      <div class="section-tag">§ 08</div>
+      <h2 class="section-title">Output vs. Outcome Analysis</h2>
+
+      <div class="dual-grid">
+        <div class="dual-card output">
+          <div class="dual-card-label">Outputs — Measurable Deliverables</div>
+          <ul>
+            <li>Employment days generated (person-days)</li>
+            <li>Rural roads and connectivity assets</li>
+            <li>Ponds, check dams, water conservation structures</li>
+            <li>Irrigation canals and watershed management</li>
+            <li>Afforestation and land development works</li>
+            <li>Individual beneficiary assets (land leveling, wells)</li>
+            <li>Number of Job Cards issued</li>
+            <li>Works completed vs. works sanctioned ratio</li>
+          </ul>
+        </div>
+        <div class="dual-card outcome">
+          <div class="dual-card-label">Outcomes — Development Impact</div>
+          <ul>
+            <li>Income stabilization during lean agricultural season</li>
+            <li>Reduced distress migration to urban centers</li>
+            <li>Women's economic empowerment (~58% participation)</li>
+            <li>Private wage floor elevation in surrounding labor markets</li>
+            <li>Consumption smoothing for rural poor households</li>
+            <li>Improved resilience during climate / economic shocks</li>
+            <li>Strengthened Panchayati Raj institutional capacity</li>
+            <li>Long-run agricultural productivity from assets created</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-line" style="margin-top:20px;">
+        MEASUREMENT GAP: Outputs (person-days, works) are tracked in near-real-time. Outcomes (income stability, migration, wage floor effects) are not systematically measured. India lacks a national MGNREGA outcome monitoring framework — evidence relies on academic surveys with heterogeneous methodology.
+      </div>
+    </div>
+
+    <!-- §09 GROUND REALITY -->
+    <div class="section" id="s09">
+      <div class="section-tag">§ 09</div>
+      <h2 class="section-title">Ground Reality — Critical Analysis</h2>
+
+      <div class="reality-grid">
+        <div class="reality-card success">
+          <div class="reality-card-head">■ Where MGNREGA Succeeds</div>
+          <ul>
+            <li>One of the largest employment guarantee programmes globally by scale</li>
+            <li>Functioned as a critical safety net during COVID-19 (FY21 peak: 389 Cr person-days)</li>
+            <li>Women participation at 58%+ — one of highest-performing gender inclusion metrics in any Central scheme</li>
+            <li>Real-time public MIS dashboards — exceptional transparency benchmark</li>
+            <li>Measurable rural wage floor elevation in labor-scarce districts</li>
+            <li>Demonstrated distress migration reduction in high-MGNREGA states (Rajasthan, AP)</li>
+            <li>Asset creation at scale — crores of water conservation structures built</li>
+          </ul>
+        </div>
+        <div class="reality-card failure">
+          <div class="reality-card-head">✗ Where MGNREGA Fails</div>
+          <ul>
+            <li><strong>Wage delays:</strong> Systemic failure — many workers wait 30–90+ days for payment, defeating income security mandate</li>
+            <li>Fake Job Cards and ghost beneficiaries — inflated person-day counts in poorly governed states</li>
+            <li>Extreme state-level performance divergence (Tamil Nadu vs. Bihar)</li>
+            <li>Asset quality crisis — many completed works non-durable due to poor measurement standards</li>
+            <li>Unemployment allowance rarely paid despite legal mandate (administrative non-compliance)</li>
+            <li>ABPS biometric failures causing genuine worker exclusion</li>
+            <li>Urban migration pull often overwhelms MGNREGA wage offer (Rs.200-300/day vs. Rs.500+ in cities)</li>
+            <li>No long-term income transformation — consumption support without skill or livelihood upgrade</li>
+          </ul>
+        </div>
+      </div>
+
+      <blockquote style="margin-top:24px;">
+        <p>"The central challenge of MGNREGA is not political will or budget — it is last-mile administrative capacity. The scheme works where panchayats are strong and fails where they are captured or weak. India does not yet have a credible solution to this governance heterogeneity."</p>
+        <cite>— Inference from World Bank (2019), Ministry of Rural Development Performance Reviews</cite>
+      </blockquote>
+    </div>
+
+    <!-- §10 SCORECARD -->
+    <div class="section" id="s10">
+      <div class="section-tag">§ 10</div>
+      <h2 class="section-title">Policy Intelligence Scorecard</h2>
+
+      <div class="scorecard">
+        <div class="score-total-box">
+          <div>
+            <div class="score-big" id="finalScore">0</div>
+            <div class="score-grade">B Grade</div>
+            <div class="score-meta">Overall Policy Intelligence Score · Out of 100</div>
+          </div>
+          <div style="flex:1; padding-left:24px; border-left:1px solid var(--border);">
+            <p style="font-size:13px; line-height:1.6; color:var(--text-muted);">MGNREGA scores strongly on coverage and transparency — the scale and openness of its MIS data is world-class. It underperforms on implementation quality (wage delays, asset quality) and long-term outcome effectiveness. The scheme excels as a crisis absorber but falls short as a structural transformation tool.</p>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div>
+            <div class="score-item-label">Coverage</div>
+            <div class="score-item-desc">15.99 Cr registered households · ~30% rural household reach annually · No structural exclusion by design · Universal rural district coverage · Self-targeting via labor type</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-val score-hi" id="s1">0</div>
+            <div class="score-max">/ 20</div>
+            <div class="score-bar"><div class="score-bar-fill score-hi-bar" id="bar1" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div>
+            <div class="score-item-label">Financial Efficiency</div>
+            <div class="score-item-desc">High absolute spend (₹86K Cr) but wage share is healthy at ~70% · DBT reduces leakage · However, wage delays signal fund flow management failures · Asset quality not systematically audited for value-for-money</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-val score-med" id="s2">0</div>
+            <div class="score-max">/ 20</div>
+            <div class="score-bar"><div class="score-bar-fill score-med-bar" id="bar2" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div>
+            <div class="score-item-label">Outcome Effectiveness</div>
+            <div class="score-item-desc">Strong income support during lean seasons and crises · Weak long-term income transformation · No debt reduction observed · Wage floor effect on private wages positive but geographically uneven · No integrated skill-to-livelihood pathway</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-val score-med" id="s3">0</div>
+            <div class="score-max">/ 20</div>
+            <div class="score-bar"><div class="score-bar-fill score-med-bar" id="bar3" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div>
+            <div class="score-item-label">Transparency</div>
+            <div class="score-item-desc">NREGASoft MIS with real-time national tracking · Public dashboards with village-level drilldown · PFMS fund flow integration · Muster rolls digitized · Among highest transparency ratings in Central social programmes globally</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-val score-hi" id="s4">0</div>
+            <div class="score-max">/ 20</div>
+            <div class="score-bar"><div class="score-bar-fill score-hi-bar" id="bar4" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="score-item">
+          <div>
+            <div class="score-item-label">Implementation Quality</div>
+            <div class="score-item-desc">Critical failure: wage delays of 30–90+ days violate legal mandate · Ghost beneficiaries in weak-governance states · ABPS exclusion errors · Unemployment allowance virtually never paid · Extreme state performance divergence (Tamil Nadu vs. Bihar gap)</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-val score-lo" id="s5">0</div>
+            <div class="score-max">/ 20</div>
+            <div class="score-bar"><div class="score-bar-fill score-lo-bar" id="bar5" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §11 OVERLAP INTELLIGENCE -->
+    <div class="section" id="s11">
+      <div class="section-tag">§ 11</div>
+      <h2 class="section-title">Overlap Intelligence</h2>
+
+      <p>MGNREGA operates in a dense ecosystem of rural welfare schemes. The following matrix analyzes target, benefit, and ministry overlap — revealing where convergence is possible and where policy duplication creates inefficiency or coverage gaps.</p>
+
+      <div class="overlap-table-wrap">
+        <table class="overlap-table">
+          <thead>
+            <tr>
+              <th>Scheme</th>
+              <th>Target Overlap</th>
+              <th>Benefit Overlap</th>
+              <th>Ministry</th>
+              <th>Convergence Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PM-KISAN</strong><br><span style="font-size:10px;color:var(--text-dim)">Pradhan Mantri Kisan Samman Nidhi</span></td>
+              <td><span class="badge badge-high">High</span> Rural farming households — MGNREGA's primary users are also PM-KISAN-eligible farmers</td>
+              <td><span class="badge badge-med">Partial</span> Both provide income — PM-KISAN unconditional ₹6K/yr, MGNREGA labor-contingent up to ₹20-30K/yr</td>
+              <td>MoA&FW<br><span style="font-size:10px;color:var(--text-dim)">vs. MoRD</span></td>
+              <td>Complementary but fragmented. Same household may use both — no unified welfare view exists</td>
+            </tr>
+            <tr>
+              <td><strong>PM Fasal Bima Yojana</strong><br><span style="font-size:10px;color:var(--text-dim)">Crop Insurance Scheme</span></td>
+              <td><span class="badge badge-high">High</span> Farmers in MGNREGA districts often PMFBY-enrolled</td>
+              <td><span class="badge badge-low">Low</span> PMFBY = risk insurance (post-crop). MGNREGA = employment income. Different risk vectors</td>
+              <td>MoA&FW<br><span style="font-size:10px;color:var(--text-dim)">vs. MoRD</span></td>
+              <td>Highly complementary — MGNREGA provides income during agricultural lean season while PMFBY covers crop failure. No integration exists</td>
+            </tr>
+            <tr>
+              <td><strong>Deen Dayal Antyodaya Yojana</strong><br><span style="font-size:10px;color:var(--text-dim)">DAY-NRLM / Rural Livelihoods</span></td>
+              <td><span class="badge badge-high">High</span> Same target: rural poor, women, self-help groups</td>
+              <td><span class="badge badge-med">Medium</span> MGNREGA = wage employment. DAY-NRLM = livelihood building, SHG credit. Overlapping households, different mechanisms</td>
+              <td>Both: MoRD</td>
+              <td>Same ministry — yet minimal operational integration. DAY-NRLM beneficiaries could be prioritized for MGNREGA skill-linked works. Convergence pathway exists but underutilized</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-title">Overlap Intelligence Synthesis</h3>
+      <div class="insight-grid">
+        <div class="insight-card critical">
+          <div class="insight-icon">!</div>
+          <div>
+            <div class="insight-card-title">MGNREGA = Labor-Based Income | PM-KISAN = Unconditional Income</div>
+            <div class="insight-card-body">These two schemes address the same rural household through entirely different delivery mechanisms with no unified beneficiary tracking. A farmer household may receive PM-KISAN (₹6K/yr) + MGNREGA wages (₹20K+ if 100 days utilized) — but neither scheme knows the other's penetration for that household. This creates a critical rural welfare intelligence gap.</div>
+          </div>
+        </div>
+        <div class="insight-card warn">
+          <div class="insight-icon">▲</div>
+          <div>
+            <div class="insight-card-title">Ministry Silo: MoRD vs. MoA&FW</div>
+            <div class="insight-card-body">MGNREGA (MoRD), PM-KISAN and PMFBY (MoA&FW) serve overlapping rural populations but maintain entirely separate databases, beneficiary ID systems, and implementation hierarchies. A tenant farmer excluded from PM-KISAN (no land) may be on MGNREGA rolls but invisible to agricultural welfare architecture.</div>
+          </div>
+        </div>
+        <div class="insight-card info">
+          <div class="insight-icon">◆</div>
+          <div>
+            <div class="insight-card-title">System Lacks Unified Rural Income Architecture</div>
+            <div class="insight-card-body">India's rural welfare landscape delivers wage employment (MGNREGA), unconditional income (PM-KISAN), crop insurance (PMFBY), and livelihood support (DAY-NRLM) through four different ministries with zero real-time convergence data. No household-level rural welfare picture exists in any government system.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §12 SYSTEM-LEVEL INSIGHT -->
+    <div class="section" id="s12">
+      <div class="section-tag">§ 12</div>
+      <h2 class="section-title">System-Level Insight — Advanced Analysis</h2>
+
+      <div class="sys-question">
+        <div class="sys-q"><span class="sys-q-mark">Q.01</span> Is India over-fragmenting rural welfare?</div>
+        <div class="sys-a">Yes — structurally. India currently runs MGNREGA (employment), PM-KISAN (income), PMFBY (insurance), DAY-NRLM (livelihoods), PM-AWAS Yojana (housing), and Ujjwala (energy) targeting near-identical rural poor households through six different administrative silos. Each scheme has its own registration system, beneficiary ID, grievance mechanism, and ministry reporting line. A single rural household may be enrolled in 3–4 schemes while remaining invisible as a unified welfare subject. The result: policy duplication where converged, and catastrophic gaps where schemes have incompatible eligibility criteria (e.g., tenant farmers excluded from PM-KISAN but enrolled in MGNREGA).</div>
+      </div>
+
+      <div class="sys-question">
+        <div class="sys-q"><span class="sys-q-mark">Q.02</span> Should MGNREGA + PM-KISAN be integrated?</div>
+        <div class="sys-a">Partial integration is structurally logical — full merger is inadvisable. MGNREGA's labor-contingent right and PM-KISAN's unconditional transfer serve different economic functions: MGNREGA provides earned income tied to public asset creation; PM-KISAN provides a consumption floor without work conditionality. Merging them would either destroy the labor-to-asset-creation linkage or impose conditionality on PM-KISAN, reducing its consumption smoothing effect. The appropriate integration model: a <strong>shared rural household ID</strong> (like FarmerID or a Rural Welfare UID) that makes both programmes visible on a single dashboard — enabling convergence analytics without benefit structure merger. MGNREGA's legal "right to work" nature also complicates merger — PM-KISAN is a scheme; MGNREGA is a statute.</div>
+      </div>
+
+      <div class="sys-question">
+        <div class="sys-q"><span class="sys-q-mark">Q.03</span> Where does policy duplication exist?</div>
+        <div class="sys-a">Duplication exists primarily at the <strong>administrative overhead</strong> level, not benefit level. Each scheme runs separate KYC, Aadhaar seeding, grievance portals, MIS systems, field verification, and social audit mechanisms for near-identical populations. The cost of this administrative duplication — estimated at 8–12% of total scheme expenditure across rural welfare — could fund meaningful benefit enhancement. Additionally, rural roads funded under MGNREGA and PMGSY (Prime Minister Gram Sadak Yojana) show project-level duplication in some districts. A unified rural asset registry with geo-tagging would eliminate this. The deepest duplication is in impact measurement — each scheme commissions separate surveys on the same rural households, producing data that is never cross-tabulated.</div>
+      </div>
+
+      <div class="insight-card critical" style="margin-top:20px;">
+        <div class="insight-icon">!</div>
+        <div>
+          <div class="insight-card-title">Structural Recommendation: National Rural Welfare ID (RWID)</div>
+          <div class="insight-card-body">A household-level Rural Welfare ID linking MGNREGA Job Card, PM-KISAN beneficiary ID, PMFBY enrollment, DAY-NRLM SHG membership, and Aadhaar under a single digital identity would: eliminate administrative duplication, enable genuine convergence analytics, identify households with zero-scheme coverage, and create the data infrastructure for a potential Universal Rural Income architecture. This is the single highest-leverage institutional intervention available to India's rural welfare system today.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §13 DATA RELIABILITY -->
+    <div class="section" id="s13">
+      <div class="section-tag">§ 13</div>
+      <h2 class="section-title">Data Reliability & Evidence Assessment</h2>
+
+      <table class="reliability-table">
+        <tr>
+          <td>Source Quality</td>
+          <td>Output data (person-days, Job Cards, payments) is <strong>high quality</strong> — tracked in real-time via NREGASoft, PFMS, and MoRD public dashboards. Among the best-documented social programmes in India.</td>
+        </tr>
+        <tr>
+          <td>Primary Sources</td>
+          <td>PIB releases, NREGASoft MIS (nrega.nic.in), Ministry of Rural Development Annual Reports, PFMS fund flow data, Social Audit reports.</td>
+        </tr>
+        <tr>
+          <td>Missing: Asset Quality</td>
+          <td>No systematic national audit of completed work asset durability, utilization, or productive value. Crores of structures built; quality and impact undocumented. CAG has flagged this as a critical monitoring gap.</td>
+        </tr>
+        <tr>
+          <td>Missing: Income Impact</td>
+          <td>Long-term household income effect of MGNREGA participation — including wage floor effect on private agricultural wages — is not systematically tracked. Existing studies rely on NSSO/NABARD surveys with 3–5 year lag.</td>
+        </tr>
+        <tr>
+          <td>Missing: Migration Data</td>
+          <td>MGNREGA's stated goal of preventing distress migration has no dedicated monitoring mechanism. Migration data from Census (decadal) and NSSO is too infrequent to attribute to MGNREGA interventions.</td>
+        </tr>
+        <tr>
+          <td>Conflicting Data</td>
+          <td>Active beneficiary counts differ between NREGASoft, Union Budget documents, and CAG audit reports due to definitional differences between "registered," "demanded work," and "employed" categories.</td>
+        </tr>
+        <tr>
+          <td>Data Reliability Score</td>
+          <td><strong style="color:var(--green);">Output Level: High</strong> &nbsp;|&nbsp; <strong style="color:var(--amber);">Outcome Level: Moderate</strong> &nbsp;|&nbsp; <strong style="color:var(--red);">Impact Level: Low</strong></td>
+        </tr>
+      </table>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Report Contents</div>
+      <ul class="sidebar-nav">
+        <li><a href="#s01">§01 Policy Snapshot</a></li>
+        <li><a href="#s02">§02 Core Guarantee</a></li>
+        <li><a href="#s03">§03 Policy Intent</a></li>
+        <li><a href="#s04">§04 Target Structure</a></li>
+        <li><a href="#s05">§05 Financial Architecture</a></li>
+        <li><a href="#s06">§06 Scale & Data</a></li>
+        <li><a href="#s07">§07 Implementation Logic</a></li>
+        <li><a href="#s08">§08 Output vs. Outcome</a></li>
+        <li><a href="#s09">§09 Ground Reality</a></li>
+        <li><a href="#s10">§10 Scorecard</a></li>
+        <li><a href="#s11">§11 Overlap Intelligence</a></li>
+        <li><a href="#s12">§12 System-Level Insight</a></li>
+        <li><a href="#s13">§13 Data Reliability</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Scheme Parameters</div>
+      <div class="scheme-params">
+        <ul>
+          <li><span>Launch</span><span>2005 (Act) · 2006 (Rollout)</span></li>
+          <li><span>Budget</span><span>₹86,000 Cr/yr</span></li>
+          <li><span>Type</span><span>Rights-Based Legislation</span></li>
+          <li><span>Delivery</span><span>DBT · ABPS · Aadhaar-linked</span></li>
+          <li><span>Guarantee</span><span>100 Days / Household / Year</span></li>
+          <li><span>Coverage</span><span>~15.99 Cr Households</span></li>
+          <li><span>Ministry</span><span>MoRD</span></li>
+          <li><span>Score</span><span style="color:var(--accent);">72 / 100</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Quick Intelligence</div>
+      <div class="insight-card warn" style="margin:0;">
+        <div class="insight-icon" style="font-size:14px;">▲</div>
+        <div>
+          <div class="insight-card-title" style="font-size:12px;">Wage Delays = #1 Failure</div>
+          <div class="insight-card-body" style="font-size:10px;">30–90 day wage delays defeat the scheme's core income security mandate. Legal but administratively unenforced.</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div><!-- /main-grid -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title">MGNREGA</div>
+      <div class="footer-sub">Policy Intelligence Report</div>
+      <div class="footer-sub" style="margin-top:8px;">A comprehensive analytical brief on the Mahatma Gandhi National Rural Employment Guarantee Act — covering legal architecture, fiscal design, implementation logic, scoring intelligence, scheme overlap, and system-level structural analysis.</div>
+    </div>
+    <div>
+      <div class="footer-section-title">Report Contents</div>
+      <ul class="footer-links">
+        <li>§01 Policy Snapshot</li>
+        <li>§02 Core Guarantee</li>
+        <li>§03 Policy Intent</li>
+        <li>§04 Target Structure</li>
+        <li>§05 Financial Architecture</li>
+        <li>§06 Scale & Data</li>
+        <li>§07 Implementation Logic</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-section-title">Advanced Analysis</div>
+      <ul class="footer-links">
+        <li>§08 Output vs. Outcome</li>
+        <li>§09 Ground Reality</li>
+        <li>§10 Scorecard · 72/100</li>
+        <li>§11 Overlap Intelligence</li>
+        <li>§12 System-Level Insight</li>
+        <li>§13 Data Reliability</li>
+      </ul>
+      <div style="margin-top:16px;" class="footer-section-title">Scheme Parameters</div>
+      <ul class="footer-links">
+        <li>Launch: 2005 (Act) · 2006 (Full)</li>
+        <li>Budget: ₹86,000 Cr / year</li>
+        <li>Coverage: ~15.99 Cr Households</li>
+        <li>Ministry: MoRD</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Dataset Version: 1.0 · Classification: Open Policy Research · Last Verified: April 22, 2026</span>
+    <span>Sources: PIB, MoRD, NREGASoft MIS, PFMS, World Bank, ResearchGate, Drishti IAS, CAG Reports</span>
+  </div>
+  <div class="footer-bottom" style="margin-top:0; padding-top:16px; border-top:1px solid var(--border); justify-content:center;">
+    <span style="color:var(--text-muted); font-size:11px; letter-spacing:0.06em;">
+      Created by <strong style="color:var(--text);">Kallol Chakrabarti</strong> &nbsp;·&nbsp; Global Independent Researcher
+    </span>
+  </div>
+</footer>
+
+<script>
+  // Animate scorebar numbers
+  const scores = [
+    { id: 's1', barId: 'bar1', target: 17, max: 20 },
+    { id: 's2', barId: 'bar2', target: 13, max: 20 },
+    { id: 's3', barId: 'bar3', target: 12, max: 20 },
+    { id: 's4', barId: 'bar4', target: 17, max: 20 },
+    { id: 's5', barId: 'bar5', target: 13, max: 20 },
+  ];
+  const finalTarget = scores.reduce((a, b) => a + b.target, 0); // 72
+
+  function animateCount(el, target, duration = 1200) {
+    let start = null;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      el.textContent = Math.floor(progress * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Intersection observer to trigger on scroll
+  const scorecardEl = document.querySelector('.scorecard');
+  let animated = false;
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;
+      scores.forEach(s => {
+        const el = document.getElementById(s.id);
+        const barEl = document.getElementById(s.barId);
+        animateCount(el, s.target);
+        setTimeout(() => {
+          barEl.style.width = (s.target / s.max * 100) + '%';
+        }, 50);
+      });
+      animateCount(document.getElementById('finalScore'), finalTarget, 1500);
+    }
+  }, { threshold: 0.2 });
+
+  if (scorecardEl) obs.observe(scorecardEl);
+</script>
+</body>
+</html>
